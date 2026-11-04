@@ -6,7 +6,6 @@ import { AppState, AppStateStatus, Linking, Platform } from "react-native";
 import * as Etebase from "etebase";
 
 import { logger } from "./logging";
-import * as C from "./constants";
 import { fonts } from "./theme";
 
 export const defaultColor = "#8BC34A";
@@ -196,9 +195,6 @@ export const fontFamilies = Platform.select({
 // How a server is named in the app: by its address, without https:// (but with http://, which isn't encrypted)
 export function serverName(serverUrl: string) {
   const trimmed = serverUrl.trim().replace(/\/+$/, "");
-  if (trimmed === C.serviceApiBase.replace(/\/+$/, "")) {
-    return "EteSync";
-  }
   const match = /^(https?):\/\/(.*)$/i.exec(trimmed);
   if (!match) {
     return trimmed;

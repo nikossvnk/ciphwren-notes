@@ -7,11 +7,9 @@ import { View, TextInput as NativeTextInput } from "react-native";
 import { Switch, HelperText, Paragraph, TouchableRipple } from "react-native-paper";
 
 
-import LinkButton from "../widgets/LinkButton";
 import Row from "../widgets/Row";
 import TextInput from "../widgets/TextInput";
 
-import * as C from "../constants";
 import PasswordInput from "../widgets/PasswordInput";
 import FormButton from "../widgets/FormButton";
 import { validateServerUrl } from "../helpers";
@@ -111,9 +109,6 @@ export default function LoginForm(props: PropsType) {
         >
           {errors.password}
         </HelperText>
-        <LinkButton to={C.forgotPassword} external>
-          Forget password?
-        </LinkButton>
 
         <TouchableRipple
           onPress={() => setShowAdvanced(!showAdvanced)}

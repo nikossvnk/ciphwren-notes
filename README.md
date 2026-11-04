@@ -5,13 +5,13 @@
 
 > [!NOTE]
 > **This is an independent fork** of [EteSync Notes](https://github.com/etesync/etesync-notes), the original
-> project of the EteSync authors. This fork is not affiliated with, endorsed by or supported by EteSync or
-> [etesync.com](https://www.etesync.com) in any way. The history of the original project is kept as it is,
-> with its authors, and the changes of this fork follow it. Like the original, it's licensed under the
+> project of the EteSync authors. This fork is not affiliated with, endorsed by or supported by EteSync
+> in any way. The history of the original project is kept as it is, with its authors, and the changes
+> of this fork follow it. Like the original, it's licensed under the
 > [GPL-3.0](LICENSES/GPL-3.0-only).
 
 Secure, end-to-end encrypted, and privacy-respecting notes and bookmarks for Android, synced with an
-[Etebase](https://www.etebase.com) server (your own, or EteSync's).
+[Etebase](https://github.com/etesync/server) server that you run yourself.
 
 - Notes in Markdown, in notebooks, which can be searched, exported to a zip and imported from one
 - Bookmarks, saved from the share menu of other apps, without the links' tracking parameters (e.g.

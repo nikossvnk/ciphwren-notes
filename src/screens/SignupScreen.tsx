@@ -22,7 +22,6 @@ import { useAsyncDispatch } from "../store";
 import { login } from "../store/actions";
 import { enforcePasswordRules, validateServerUrl } from "../helpers";
 
-import * as C from "../constants";
 import { useCredentials } from "../credentials";
 import LinkButton from "../widgets/LinkButton";
 import { useNavigation } from "@react-navigation/native";
@@ -146,14 +145,6 @@ export default React.memo(function SignupScreen() {
           <Text> or </Text><LinkButton to="/login">log in to your account</LinkButton>
         </View>
 
-        <Alert
-          style={{ marginTop: 10 }}
-          severity="info"
-          to={C.pricing}
-          external
-        >
-          You are signing up for a free trial. Click here for pricing information.
-        </Alert>
         <View>
           <TextInput
             autoCapitalize="none"

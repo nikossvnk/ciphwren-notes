@@ -68,7 +68,7 @@ const rootStackScreens: RootStackScreens = {
 };
 
 const linking = {
-  prefixes: ["https://notes.etesync.com", "com.etesync.notes://"],
+  prefixes: ["com.etesync.notes://"],
   config: {
     screens: {
       Root: {

@@ -43,26 +43,16 @@ const menuItems: MenuItem[] = [
 
 export const externalMenuItems = [
   {
+    title: "Source code",
+    link: C.sourceCode,
+    icon: "home",
+  },
+  {
     title: "Report issue",
     link: C.reportIssue,
     icon: "bug",
   },
 ];
-
-externalMenuItems.unshift(
-  {
-    title: "FAQ",
-    link: C.faq,
-    icon: "forum",
-  }
-);
-externalMenuItems.unshift(
-  {
-    title: "Web site",
-    link: C.homePage,
-    icon: "home",
-  }
-);
 
 export function FingerprintDialog(props: { visible: boolean, onDismiss: () => void }) {
   const etebase = useCredentials()!;
