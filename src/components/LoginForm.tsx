@@ -26,7 +26,7 @@ interface FormErrors {
 const alwaysShowAdvanced = false;
 
 interface PropsType {
-  onSubmit: (username: string, password: string, serviceApiUrl?: string) => void;
+  onSubmit: (username: string, password: string, serverUrl: string) => void;
 }
 
 export default function LoginForm(props: PropsType) {
@@ -41,8 +41,8 @@ export default function LoginForm(props: PropsType) {
   const serverRef = React.useRef<NativeTextInput>(null);
 
   function onSubmit() {
-    // The default server is used when it's left empty
-    const serverUrl = (showAdvanced && server.trim()) ? server.trim() : undefined;
+    // There's no default server: the user must give theirs
+    const serverUrl = server.trim();
 
     const errors: FormErrors = {};
     const fieldRequired = "This field is required!";
@@ -55,9 +55,11 @@ export default function LoginForm(props: PropsType) {
       errors.password = fieldRequired;
     }
 
-    const serverError = (serverUrl) ? validateServerUrl(serverUrl) : undefined;
+    const serverError = (serverUrl) ? validateServerUrl(serverUrl) : fieldRequired;
     if (serverError) {
       errors.server = serverError;
+      // The field is under the advanced settings, so show it with its error
+      setShowAdvanced(true);
     }
 
     setErrors(errors);
@@ -135,7 +137,7 @@ export default function LoginForm(props: PropsType) {
               label="Server URL"
               accessibilityLabel="Server URL"
               value={server}
-              placeholder="E.g. https://api.etebase.com"
+              placeholder="E.g. https://etebase.example.com"
               onChangeText={setServer}
               ref={serverRef}
             />
