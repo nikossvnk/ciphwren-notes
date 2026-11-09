@@ -28,7 +28,8 @@
       "web"
     ],
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-splash-screen"
     ]
   }
 }

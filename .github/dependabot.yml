@@ -12,8 +12,9 @@ updates:
         update-types: [minor, patch]
     ignore:
       # Expo decides the versions of these, so they are updated together with Expo, by hand
-      # (npx expo install --fix): on their own they would break the app
-      - dependency-name: "expo"
+      # (npx expo install --fix): on their own they would break the app. `expo` itself isn't here,
+      # so a new SDK (or a fix of it) opens a pull request: that's the branch to run
+      # `npx expo install --fix` on.
       - dependency-name: "expo-*"
       - dependency-name: "@expo/*"
       - dependency-name: "babel-preset-expo"
@@ -29,9 +30,6 @@ updates:
       - dependency-name: "react-native-web"
       - dependency-name: "@react-native-async-storage/async-storage"
       - dependency-name: "@react-native-community/netinfo"
-      # Babel 8 waits for Expo: its preset and bundler (and React Native's preset) need Babel 7
-      - dependency-name: "@babel/*"
-        update-types: ["version-update:semver-major"]
       # patches/ changes it, and the patch is for this version
       - dependency-name: "react-native-sodium"
 

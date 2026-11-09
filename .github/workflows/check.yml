@@ -27,6 +27,11 @@ jobs:
 
       - run: npm ci
 
+      # The packages the Expo SDK decides have the versions that go with it (Dependabot leaves them
+      # to `npx expo install --fix`, see dependabot.yml)
+      - name: Expo's versions
+        run: npx expo install --check
+
       - name: Type check
         run: npx tsc --noEmit
 
