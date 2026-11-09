@@ -12,8 +12,9 @@ updates:
         update-types: [minor, patch]
     ignore:
       # Expo decides the versions of these, so they are updated together with Expo, by hand
-      # (npx expo install --fix): on their own they would break the app
-      - dependency-name: "expo"
+      # (npx expo install --fix): on their own they would break the app. `expo` itself isn't here,
+      # so a new SDK (or a fix of it) opens a pull request: that's the branch to run
+      # `npx expo install --fix` on.
       - dependency-name: "expo-*"
       - dependency-name: "@expo/*"
       - dependency-name: "babel-preset-expo"
