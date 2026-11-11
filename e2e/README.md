@@ -1,6 +1,6 @@
 # Browser tests
 
-These tests use the web build of EteSync Notes in a headless Chromium, against an Etebase test
+These tests use the web build of Ciphwren Notes in a headless Chromium, against an Etebase test
 server, the way a person would: logging in, writing notes offline, two devices changing the same
 note, notebooks, navigation, and so on. Every check prints `ok` or `FAIL`, and a test fails when any
 of its checks does.
@@ -13,7 +13,7 @@ They change the data of the test account, so never point them at a real server o
    (`docker/test-server` in its repository), on `http://127.0.0.1:3735`:
 
    ```
-   docker build -t etebase-test-server -f docker/test-server/Dockerfile https://github.com/nikossvnk/etesync-server.git
+   docker build -t etebase-test-server -f docker/test-server/Dockerfile https://github.com/nikossvnk/ciphwren-server.git
    docker run -d --name etebase-test -p 127.0.0.1:3735:3735 etebase-test-server
    ```
 

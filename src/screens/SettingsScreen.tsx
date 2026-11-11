@@ -260,7 +260,7 @@ const SettingsScreen = function _SettingsScreen() {
     setExporting(true);
     try {
       const { data, count } = await exportNotes(etebase!, store.getState() as unknown as StoreState);
-      const name = `etesync-notes-${format(new Date(), "yyyy-MM-dd")}.zip`;
+      const name = `ciphwren-notes-${format(new Date(), "yyyy-MM-dd")}.zip`;
       if (await saveFile(name, data, "application/zip")) {
         dispatch(pushMessage({ message: `Exported ${count} ${(count === 1) ? "note" : "notes"} to ${name}`, severity: "success" }) as any);
       }

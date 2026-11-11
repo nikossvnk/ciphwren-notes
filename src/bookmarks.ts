@@ -25,8 +25,8 @@ export interface BookmarkMetadata extends Etebase.ItemMetadata {
   savedFrom?: SavedFrom;
 }
 
-// Where a bookmark was saved: in this app's own screen, shared to it by another app, in etesync-aio
-// (the desktop app), or imported (by etesync-aio) from a browser's bookmarks. The same values as there.
+// Where a bookmark was saved: in this app's own screen, shared to it by another app, in ciphwren-desktop
+// (the desktop app), or imported (by ciphwren-desktop) from a browser's bookmarks. The same values as there.
 export type SavedFrom = "android" | "android-share" | "computer" | "import";
 
 // Says where a bookmark was saved, after "Saved Oct 12, 2026": e.g. "from Android (Share)"
@@ -292,7 +292,7 @@ function loadItem(etebase: Etebase.Account, colUid: string, uid: string) {
 
 // Changes a bookmark. Moving it to another collection makes a new one there (an item can't change
 // its collection), so it returns where it is now. It keeps where it was saved, and what else is in
-// its meta that this app doesn't know (e.g. what etesync-aio adds).
+// its meta that this app doesn't know (e.g. what ciphwren-desktop adds).
 export async function updateBookmark(etebase: Etebase.Account, bookmark: Bookmark, data: BookmarkData, colUid?: string) {
   if (colUid && (colUid !== bookmark.colUid)) {
     const loaded = loadItem(etebase, bookmark.colUid, bookmark.uid);
@@ -356,7 +356,7 @@ export async function fetchTitle(url: string) {
       credentials: "omit",
       // Some sites refuse the default "okhttp" (e.g. Wikipedia), and also a browser's that the request
       // doesn't otherwise look like, so it says what it is, as they ask for
-      headers: (Platform.OS === "web") ? undefined : { "User-Agent": `EteSyncNotes (+${C.sourceCode})` },
+      headers: (Platform.OS === "web") ? undefined : { "User-Agent": `CiphwrenNotes (+${C.sourceCode})` },
     });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);

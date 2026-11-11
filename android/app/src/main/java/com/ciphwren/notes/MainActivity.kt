@@ -1,4 +1,4 @@
-package com.etesync.notes
+package com.ciphwren.notes
 
 import android.os.Build
 import android.os.Bundle

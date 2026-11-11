@@ -68,7 +68,7 @@ const rootStackScreens: RootStackScreens = {
 };
 
 const linking = {
-  prefixes: ["com.etesync.notes://"],
+  prefixes: ["com.ciphwren.notes://"],
   config: {
     screens: {
       Root: {

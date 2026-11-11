@@ -1,6 +1,6 @@
 <p align="center">
   <img width="120" src="assets/icon.png" />
-  <h1 align="center">EteSync Notes</h1>
+  <h1 align="center">Ciphwren Notes</h1>
 </p>
 
 > [!NOTE]
@@ -20,9 +20,13 @@ Secure, end-to-end encrypted, and privacy-respecting notes and bookmarks for And
 
 ## Download
 
-The APKs are on the [releases page](https://github.com/nikossvnk/etesync-notes/releases):
-`etesync-notes-X.Y.Z.apk` for 64-bit phones (nearly all of them), and
-`etesync-notes-X.Y.Z-armeabi-v7a.apk` for older 32-bit phones. Each has a `.sha256` next to it.
+The APKs are on the [releases page](https://github.com/nikossvnk/ciphwren-notes/releases):
+`ciphwren-notes-X.Y.Z.apk` for 64-bit phones (nearly all of them), and
+`ciphwren-notes-X.Y.Z-armeabi-v7a.apk` for older 32-bit phones. Each has a `.sha256` next to it.
+
+Ciphwren Notes was called EteSync Notes (`com.etesync.notes`) before. It's now a separate app
+(`com.ciphwren.notes`), which an EteSync Notes install doesn't update to: install it next to the old
+one and log in (sync the old one first, then uninstall it).
 
 ## Building
 

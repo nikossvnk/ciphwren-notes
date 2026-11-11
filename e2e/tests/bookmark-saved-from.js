@@ -1,4 +1,4 @@
-// Where a bookmark was saved (savedFrom in its meta, the same as etesync-aio writes): recorded when one
+// Where a bookmark was saved (savedFrom in its meta, the same as ciphwren-desktop writes): recorded when one
 // is saved here, kept (with what else this app doesn't know) when it's changed, moved or undeleted, and
 // shown in its edit screen
 const { launch, session, run, check, api, unique } = require("../lib");
@@ -9,7 +9,7 @@ run(async () => {
   const computerUrl = `https://example.com/computer-${n}`;
   const alive = async (link) => (await api.bookmarks()).filter((x) => (x.url === link) && !x.deleted);
 
-  // One saved on a computer (by etesync-aio), with a field this app doesn't know, in a second list
+  // One saved on a computer (by ciphwren-desktop), with a field this app doesn't know, in a second list
   await api.addBookmark("Bookmarks", { name: `Computer ${n}`, url: computerUrl, savedFrom: "computer", extra: "kept" });
   await api.addBookmark(`Other ${n}`, { name: `Other list ${n}`, url: `https://example.com/other-${n}`, savedFrom: "computer" });
 

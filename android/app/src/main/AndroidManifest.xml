@@ -20,12 +20,12 @@
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
-      <!-- The app's own links (com.etesync.notes://bookmarks), e.g. from the share sheet and the shortcut.
+      <!-- The app's own links (com.ciphwren.notes://bookmarks), e.g. from the share sheet and the shortcut.
            Not BROWSABLE, so web pages can't open them. -->
       <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
-        <data android:scheme="com.etesync.notes"/>
+        <data android:scheme="com.ciphwren.notes"/>
       </intent-filter>
       <!-- The "Bookmarks" target in the top row of the share menu (direct share), see MainApplication -->
       <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>

@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: © 2019 EteSync Authors
 // SPDX-License-Identifier: GPL-3.0-only
 
-export const appName = "EteSync Notes";
-export const sourceCode = "https://github.com/nikossvnk/etesync-notes";
+export const appName = "Ciphwren Notes";
+export const sourceCode = "https://github.com/nikossvnk/ciphwren-notes";
 export const reportIssue = sourceCode + "/issues";
 
 
