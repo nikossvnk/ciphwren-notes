@@ -125,8 +125,8 @@ jobs:
           # One APK per CPU architecture: the one without a suffix is for 64-bit phones (nearly all of
           # them), the armeabi-v7a one for older 32-bit phones
           out=android/app/build/outputs/apk/release
-          apk="etesync-notes-${TAG#v}.apk"
-          apk32="etesync-notes-${TAG#v}-armeabi-v7a.apk"
+          apk="ciphwren-notes-${TAG#v}.apk"
+          apk32="ciphwren-notes-${TAG#v}-armeabi-v7a.apk"
           cp "$out/app-arm64-v8a-release.apk" "$apk"
           cp "$out/app-armeabi-v7a-release.apk" "$apk32"
           sha256sum "$apk" > "$apk.sha256"

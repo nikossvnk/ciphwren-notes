@@ -1,4 +1,4 @@
-package com.etesync.notes
+package com.ciphwren.notes
 
 import android.app.Application
 import android.content.Intent
@@ -55,8 +55,8 @@ class MainApplication : Application(), ReactApplication {
       val shortcut = ShortcutInfoCompat.Builder(this, "bookmarks")
         .setShortLabel(getString(R.string.shortcut_bookmarks))
         .setIcon(IconCompat.createWithResource(this, R.drawable.ic_shortcut_bookmark))
-        .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("com.etesync.notes://bookmarks"), this, MainActivity::class.java))
-        .setCategories(setOf("com.etesync.notes.category.BOOKMARKS"))
+        .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("com.ciphwren.notes://bookmarks"), this, MainActivity::class.java))
+        .setCategories(setOf("com.ciphwren.notes.category.BOOKMARKS"))
         .setLongLived(true)
         .build()
       ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)

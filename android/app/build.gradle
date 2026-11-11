@@ -88,9 +88,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.etesync.notes'
+    namespace 'com.ciphwren.notes'
     defaultConfig {
-        applicationId 'com.etesync.notes'
+        applicationId 'com.ciphwren.notes'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         // Can be set with -PappVersionCode=... and -PappVersionName=..., the release workflow does

@@ -10,7 +10,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import SettingsGate from "./SettingsGate";
 import { Shared, ShareSheet } from "./screens/BookmarkShareScreen";
 
-const scheme = "com.etesync.notes://";
+const scheme = "com.ciphwren.notes://";
 
 // What Android's share target (ShareActivity) shows: only the sheet to save the shared link, over
 // the app it was shared from. Closing it goes back to that app.

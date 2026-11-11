@@ -109,8 +109,8 @@ export function ShareSheet(props: PropsType) {
     content = (
       <View style={sheetStyle} role="dialog" aria-label="Save bookmark">
         <Heading title="Save bookmark" onClose={onClose} />
-        <Text style={[styles.text, { color: theme.colors.textSecondary }]}>Log in to EteSync Notes first, then share the link again to save it.</Text>
-        <MainButton label="Open EteSync Notes" onPress={onLogin} />
+        <Text style={[styles.text, { color: theme.colors.textSecondary }]}>Log in to Ciphwren Notes first, then share the link again to save it.</Text>
+        <MainButton label="Open Ciphwren Notes" onPress={onLogin} />
       </View>
     );
   } else if (!valid) {

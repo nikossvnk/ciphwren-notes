@@ -1,6 +1,9 @@
 # Changelog
 *NOTE:* may be removed in the future in favor of the fastlane changelog.
 
+## Unreleased
+* Renamed to Ciphwren Notes, a separate app (`com.ciphwren.notes`): install it next to EteSync Notes and log in again; "Save to Ciphwren" in the share menu
+
 ## Version 2.3.0
 * Bookmarks are saved without the tracking parameters of their links (like utm_source or fbclid), whether they're shared from another app, pasted or typed
 * A link in a note opens once, instead of twice

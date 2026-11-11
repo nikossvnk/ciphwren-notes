@@ -13,7 +13,7 @@ Notes
 
 Bookmarks
 =========
-* Save links from any app with "Save to EteSync" in the share menu, without leaving that app
+* Save links from any app with "Save to Ciphwren" in the share menu, without leaving that app
 * Add a title, a note and tags, and find them again by searching or by tag
 * A link that's saved already is updated instead of added twice
 

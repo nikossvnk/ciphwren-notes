@@ -411,7 +411,7 @@ function EmptyBookmarks(props: { onAdd: () => void }) {
       <Text style={[styles.emptyTitle, { color: theme.colors.text }]}>Keep links for later</Text>
       <Text style={[styles.emptyText, { color: theme.colors.textSecondary }]}>
         {(Platform.OS === "android") ?
-          "Add a link here, or share a page from your browser to EteSync Notes. Bookmarks sync to your other devices, encrypted." :
+          "Add a link here, or share a page from your browser to Ciphwren Notes. Bookmarks sync to your other devices, encrypted." :
           "Add a link here. Bookmarks sync to your other devices, encrypted."}
       </Text>
       <TouchableRipple borderless onPress={props.onAdd} accessibilityRole="button" style={[styles.emptyButton, { backgroundColor: theme.colors.accent }]}>
