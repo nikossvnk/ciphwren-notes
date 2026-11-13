@@ -23,9 +23,6 @@ import { DefaultNavigationProp, RootStackParamList } from "../RootStackParamList
 
 import ColorBox from "../widgets/ColorBox";
 
-const iconDeleted = (props: any) => (<List.Icon {...props} color="#F20C0C" icon="delete" />);
-const iconChanged = (props: any) => (<List.Icon {...props} color="#FEB115" icon="pencil" />);
-
 type NavigationProp = StackNavigationProp<RootStackParamList, "CollectionChangelog">;
 
 interface PropsType {
@@ -70,15 +67,19 @@ export default function CollectionChangelogScreen(props: PropsType) {
   function renderEntry(param: { item: CachedItem & { uid: string } }) {
     const item = param.item;
 
-    const icon = (item.isDeleted) ? iconDeleted : iconChanged;
-
     const name = item.meta.name!;
     const mtime = (item.meta.mtime) ? format(item.meta.mtime, "PPpp") : undefined;
 
     return (
       <List.Item
         key={item.uid}
-        left={icon}
+        left={(iconProps) => (
+          <List.Icon
+            {...iconProps}
+            color={(item.isDeleted) ? theme.colors.error : theme.colors.warning}
+            icon={(item.isDeleted) ? "delete" : "pencil"}
+          />
+        )}
         title={name}
         description={mtime}
         onPress={undefined /* FIXME: Actually do something on click */}

@@ -1,5 +1,6 @@
 <resources>
+  <!-- The brand's colors: white (deep navy at night, see values-night) behind the splash screen, deep navy behind the icon -->
   <color name="splashscreen_background">#FFFFFF</color>
-  <color name="iconBackground">#424242</color>
-  <color name="colorPrimary">#023c69</color>
+  <color name="iconBackground">#0B1F33</color>
+  <color name="colorPrimary">#0E7C86</color>
 </resources>

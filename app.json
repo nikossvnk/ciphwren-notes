@@ -4,23 +4,19 @@
     "slug": "ciphwren_notes",
     "version": "2.3.0",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#424242"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "web": {
       "favicon": "./assets/favicon.png",
-      "themeColor": "#ffc107"
+      "themeColor": "#0B1F33"
     },
     "android": {
       "package": "com.ciphwren.notes",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#424242"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "monochromeImage": "./assets/adaptive-icon-monochrome.png",
+        "backgroundColor": "#0B1F33"
       }
     },
     "platforms": [
@@ -29,7 +25,18 @@
     ],
     "plugins": [
       "expo-secure-store",
-      "expo-splash-screen"
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 128,
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "image": "./assets/splash-dark.png",
+            "backgroundColor": "#0B1F33"
+          }
+        }
+      ]
     ]
   }
 }

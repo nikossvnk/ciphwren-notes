@@ -142,7 +142,9 @@ export function CollectionPicker(props: { collections: { uid: string, name: stri
               accessibilityState={{ checked: selected }}
               aria-checked={selected}
               accessibilityLabel={col.name}
+              // (as much room on the right as on the left: a tag has less there, next to its remove button)
               style={[styles.tag, {
+                paddingRight: 12,
                 backgroundColor: (selected) ? theme.colors.chipActive : theme.colors.surface,
                 borderColor: (selected) ? theme.colors.chipActive : theme.colors.border,
               }]}
@@ -227,6 +229,8 @@ const styles = StyleSheet.create({
   newTag: {
     minWidth: 96,
     paddingRight: 12,
+    // (Android's own padding above and below the text doesn't fit in the height of a tag)
+    paddingVertical: 0,
     fontSize: 14,
     fontFamily: fonts.regular,
     outlineStyle: "none",

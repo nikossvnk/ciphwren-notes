@@ -4,6 +4,8 @@
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="android:navigationBarColor">@android:color/transparent</item>
+    <!-- Behind the app until its first screen is drawn: the splash screen's color, not the theme's gray -->
+    <item name="android:windowBackground">@color/splashscreen_background</item>
   </style>
   <!-- The share target: see-through, so the app the link is shared from stays visible behind the sheet -->
   <style name="Theme.App.Share" parent="AppTheme">
@@ -13,7 +15,9 @@
     <item name="android:backgroundDimEnabled">false</item>
     <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
   </style>
+  <!-- The splash screen: the brand's mark in the middle (and from Android 12 the system's own, the icon on this color) -->
   <style name="Theme.App.SplashScreen" parent="AppTheme">
-    <item name="android:windowBackground">@drawable/splashscreen_logo</item>
+    <item name="android:windowBackground">@drawable/splashscreen</item>
+    <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/splashscreen_background</item>
   </style>
 </resources>

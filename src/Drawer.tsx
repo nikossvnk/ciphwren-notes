@@ -102,7 +102,7 @@ export default function Drawer(props: PropsType) {
           <View style={{ height: StatusBar.currentHeight || 0 }} />
           <Container style={{ backgroundColor: "transparent", paddingVertical: 18 }}>
             <View style={styles.app}>
-              <Image style={styles.appIcon} source={require("./images/icon.png")} />
+              <Image style={styles.appIcon} source={(theme.dark) ? require("./images/icon-dark.png") : require("./images/icon.png")} />
               <Text style={[styles.appName, { color: theme.colors.textMuted }]}>{C.appName}</Text>
             </View>
             {etebase && (

@@ -288,7 +288,7 @@ export default function BookmarkListScreen(props: PropsType) {
         duration={8000}
         wrapperStyle={{ zIndex: 5 }}
         style={{ backgroundColor: theme.colors.chipActive }}
-        action={{ label: "Undo", onPress: undo, textColor: (theme.dark) ? theme.colors.accent : "#A8BDF7" }}
+        action={{ label: "Undo", onPress: undo, textColor: theme.colors.accentOnChipActive }}
       >
         <Text style={{ color: theme.colors.onChipActive }}>Bookmark deleted</Text>
       </Snackbar>
