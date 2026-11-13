@@ -1,54 +1,100 @@
-<h1 align="center">
-  <img src=".github/banner.png" alt="Ciphwren Notes" width="880" />
-</h1>
-
-> [!NOTE]
-> **This is an independent fork** of [EteSync Notes](https://github.com/etesync/etesync-notes), the original
-> project of the EteSync authors. This fork is not affiliated with, endorsed by or supported by EteSync
-> in any way. The history of the original project is kept as it is, with its authors, and the changes
-> of this fork follow it. Like the original, it's licensed under the
-> [GPL-3.0](LICENSES/GPL-3.0-only).
-
-Secure, end-to-end encrypted, and privacy-respecting notes and bookmarks for Android, synced with an
-[Etebase](https://github.com/etesync/server) server that you run yourself.
-
-- Notes in Markdown, in notebooks, which can be searched, exported to a zip and imported from one
-- Bookmarks, saved from the share menu of other apps, without the links' tracking parameters (e.g.
-  `utm_source`, `fbclid`)
-- Works offline, and syncs while the app is open
-
 <p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-notes.png" alt="The list of notes, with pinned ones first" width="19%" />
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-note.png" alt="A note with a checklist" width="19%" />
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-bookmarks.png" alt="The bookmarks, with their lists and tags" width="19%" />
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-save-a-link.png" alt="Saving a link shared from another app" width="19%" />
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6-dark-mode.png" alt="The notes in the dark theme" width="19%" />
+  <img src=".github/banner.png" alt="Ciphwren Notes — private notes and saved links on your own server. App previews show notes, bookmarks, and dark mode." width="100%" />
 </p>
 
-## Download
+<p align="center">
+  End-to-end encrypted Markdown notes and bookmarks for Android.<br />
+  Works offline. Syncs with an Etebase server you run yourself.
+</p>
 
-The APKs are on the [releases page](https://github.com/nikossvnk/ciphwren-notes/releases):
-`ciphwren-notes-X.Y.Z.apk` for 64-bit phones (nearly all of them), and
-`ciphwren-notes-X.Y.Z-armeabi-v7a.apk` for older 32-bit phones. Each has a `.sha256` next to it.
+<p align="center">
+  <a href="https://github.com/nikossvnk/ciphwren-notes/releases"><strong>Download for Android</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#getting-started">Getting started</a>
+  &nbsp;·&nbsp;
+  <a href="#development">Development</a>
+</p>
 
-Ciphwren Notes was called EteSync Notes (`com.etesync.notes`) before. It's now a separate app
-(`com.ciphwren.notes`), which an EteSync Notes install doesn't update to: install it next to the old
-one and log in (sync the old one first, then uninstall it).
+## A place for your notes and links
 
-## Building
+| Write and organize | Save and find | Keep control |
+| --- | --- | --- |
+| Markdown notes, notebooks, pinned notes, and search. | Bookmarks with lists and tags, saved from other apps' share menus. | End-to-end encryption with your own Etebase server. |
+| Export notes to a ZIP and import them again. | Tracking parameters such as `utm_source` and `fbclid` are removed from saved links. | Work offline; sync while the app is open. |
 
-It's an [Expo](https://expo.dev) (React Native) app. With Node.js 24, JDK 17 and the Android SDK
-(`ANDROID_HOME` set):
+<details>
+<summary>Explore the app — full-size screenshots</summary>
 
-```
+Select an image to view it at full size.
+
+| Notes | Markdown | Bookmarks |
+| :---: | :---: | :---: |
+| [![Notes with pinned items](fastlane/metadata/android/en-US/images/phoneScreenshots/1-notes.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/1-notes.png) | [![A Markdown note with a checklist](fastlane/metadata/android/en-US/images/phoneScreenshots/2-note.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/2-note.png) | [![Bookmarks organized with lists and tags](fastlane/metadata/android/en-US/images/phoneScreenshots/4-bookmarks.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/4-bookmarks.png) |
+
+| Editor | Save a link | Dark mode |
+| :---: | :---: | :---: |
+| [![Editing a Markdown note](fastlane/metadata/android/en-US/images/phoneScreenshots/3-editor.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/3-editor.png) | [![Saving a link shared from another app](fastlane/metadata/android/en-US/images/phoneScreenshots/5-save-a-link.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/5-save-a-link.png) | [![Notes in dark mode](fastlane/metadata/android/en-US/images/phoneScreenshots/6-dark-mode.png)](fastlane/metadata/android/en-US/images/phoneScreenshots/6-dark-mode.png) |
+
+</details>
+
+## Getting started
+
+Ciphwren Notes needs an account on an [Etebase server](https://github.com/etesync/server) that you run yourself.
+
+1. Download an APK from the [releases page](https://github.com/nikossvnk/ciphwren-notes/releases).
+2. Install it on your Android device. On the login screen, open **Advanced settings**, enter your **Server URL**, and sign in with your username and password.
+3. Create a note or save a link from another app's share menu. Keep the app open to sync your changes.
+
+| Your device | APK |
+| --- | --- |
+| 64-bit Android phones (nearly all devices) | `ciphwren-notes-X.Y.Z.apk` |
+| Older 32-bit Android phones | `ciphwren-notes-X.Y.Z-armeabi-v7a.apk` |
+
+Each APK has a corresponding `.sha256` file in the release.
+
+### Moving from EteSync Notes
+
+Ciphwren Notes uses `com.ciphwren.notes`, a separate app ID from EteSync Notes (`com.etesync.notes`). It installs alongside the old app rather than updating it.
+
+Sync the old app first, install Ciphwren Notes, and sign in. Check that your notes have synced before uninstalling the old app.
+
+## Development
+
+Built with [Expo](https://expo.dev) and React Native. Install **Node.js 24**, **JDK 17**, and the **Android SDK**, and set `ANDROID_HOME`.
+
+```sh
 npm install
-npx tsc --noEmit && npm run lint    # the checks CI runs
-npm run android                     # build, install and start it on a device or emulator
+npx tsc --noEmit
+npm run lint
+npm run android
 ```
 
-A release APK: `cd android && ./gradlew assembleRelease`. It's signed with the debug key unless the
-release key is given (see `android/app/build.gradle`), and such builds are for testing only. Releases
-are built by the release workflow when a `vX.Y.Z` tag is pushed.
+CI checks Expo dependency versions, TypeScript, and lint, and runs browser tests. `npm run android` builds, installs, and starts the app on a device or emulator.
 
-The app also builds for the web (`npx expo export --platform web`), which is only used by the
-browser tests in [`e2e`](e2e/README.md).
+<details>
+<summary>Release builds and browser tests</summary>
+
+Build a release APK:
+
+```sh
+cd android
+./gradlew assembleRelease
+```
+
+Without a release key, this build uses the debug key and is for testing only. See [`android/app/build.gradle`](android/app/build.gradle) for signing configuration. Published releases are built by the release workflow when a `vX.Y.Z` tag is pushed.
+
+The app also builds for the web:
+
+```sh
+npx expo export --platform web
+```
+
+The web build is used only for the browser tests. See the [end-to-end test guide](e2e/README.md).
+
+</details>
+
+## Origins and license
+
+Ciphwren Notes is an **independent fork** of [EteSync Notes](https://github.com/etesync/etesync-notes), originally created by the EteSync authors. It is not affiliated with, endorsed by, or supported by EteSync.
+
+The original project's history and authorship are preserved, followed by this fork's changes. Like the original, Ciphwren Notes is licensed under [GPL-3.0](LICENSES/GPL-3.0-only).
