@@ -28,7 +28,7 @@ const getStyles = (theme: Theme, fontSize: number, fontFamilyKey: FontFamilyKey)
 
   const extraColors = {
     border: theme.colors.border,
-    blockBackground: (theme.dark) ? "#232428" : "#F6F6F2",
+    blockBackground: theme.colors.field,
     blockText: theme.colors.textBody,
     link: theme.colors.accent,
   };

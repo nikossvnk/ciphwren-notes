@@ -1,7 +1,6 @@
-<p align="center">
-  <img width="120" src="assets/icon.png" />
-  <h1 align="center">Ciphwren Notes</h1>
-</p>
+<h1 align="center">
+  <img src=".github/banner.png" alt="Ciphwren Notes" width="880" />
+</h1>
 
 > [!NOTE]
 > **This is an independent fork** of [EteSync Notes](https://github.com/etesync/etesync-notes), the original
@@ -17,6 +16,14 @@ Secure, end-to-end encrypted, and privacy-respecting notes and bookmarks for And
 - Bookmarks, saved from the share menu of other apps, without the links' tracking parameters (e.g.
   `utm_source`, `fbclid`)
 - Works offline, and syncs while the app is open
+
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-notes.png" alt="The list of notes, with pinned ones first" width="19%" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-note.png" alt="A note with a checklist" width="19%" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-bookmarks.png" alt="The bookmarks, with their lists and tags" width="19%" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-save-a-link.png" alt="Saving a link shared from another app" width="19%" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6-dark-mode.png" alt="The notes in the dark theme" width="19%" />
+</p>
 
 ## Download
 

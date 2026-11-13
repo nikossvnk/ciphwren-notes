@@ -8,7 +8,8 @@ import * as Etebase from "etebase";
 import { logger } from "./logging";
 import { fonts } from "./theme";
 
-export const defaultColor = "#8BC34A";
+// The color of a notebook or bookmark list that has none: the brand's teal
+export const defaultColor = "#0E7C86";
 
 export interface NoteMetadata extends Etebase.ItemMetadata {
   name: string;

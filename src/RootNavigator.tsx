@@ -306,7 +306,7 @@ function GlobalMessages() {
       action={{
         label: "Dismiss",
         onPress: handleClose,
-        textColor: (theme.dark) ? theme.colors.accent : "#A8BDF7",
+        textColor: theme.colors.accentOnChipActive,
       }}
     >
       <Text style={{ color: theme.colors.onChipActive }}>{message?.message}</Text>

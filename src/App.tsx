@@ -21,11 +21,11 @@ import { StoreState } from "./store";
 import { RootStackParamList } from "./RootStackParamList";
 import { DarkTheme, LightTheme } from "./theme";
 import { useFonts } from "expo-font";
-// (each weight on its own: the package's index would bring all 14 of them into the app)
-import { IBMPlexSans_400Regular } from "@expo-google-fonts/ibm-plex-sans/400Regular";
-import { IBMPlexSans_500Medium } from "@expo-google-fonts/ibm-plex-sans/500Medium";
-import { IBMPlexSans_600SemiBold } from "@expo-google-fonts/ibm-plex-sans/600SemiBold";
-import { IBMPlexSans_700Bold } from "@expo-google-fonts/ibm-plex-sans/700Bold";
+// (each weight on its own: the package's index would bring all 18 of them into the app)
+import { Inter_400Regular } from "@expo-google-fonts/inter/400Regular";
+import { Inter_500Medium } from "@expo-google-fonts/inter/500Medium";
+import { Inter_600SemiBold } from "@expo-google-fonts/inter/600SemiBold";
+import { Inter_700Bold } from "@expo-google-fonts/inter/700Bold";
 
 enableScreens();
 
@@ -86,7 +86,7 @@ export function useAppTheme() {
   const colorScheme = (darkModePreference === "auto") ? colorScheme_ : darkModePreference;
   const theme = (colorScheme === "dark") ? DarkTheme : LightTheme;
   // The font of the app, which is part of it, so this is quick (and it falls back to the system's if it fails)
-  const [fontsLoaded, fontsError] = useFonts({ IBMPlexSans_400Regular, IBMPlexSans_500Medium, IBMPlexSans_600SemiBold, IBMPlexSans_700Bold });
+  const [fontsLoaded, fontsError] = useFonts({ Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold });
   return { theme, ready: fontsLoaded || !!fontsError };
 }
 

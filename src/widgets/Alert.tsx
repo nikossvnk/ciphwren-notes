@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import * as React from "react";
+import Color from "color";
 import { View, ViewProps, StyleSheet } from "react-native";
 import { Text, TouchableRipple } from "react-native-paper";
 import { useTheme } from "../theme";
@@ -19,16 +20,22 @@ export default function Alert(props_: React.PropsWithChildren<PropsType>) {
   const theme = useTheme();
   const { children, style, severity, to, external, onPress, ...props } = props_;
   const icons = {
-    error: "information-outline",
+    error: "alert-circle-outline",
     warning: "alert-outline",
     info: "information-outline",
     success: "checkbox-marked-circle-outline",
   };
-  const stylesColor = theme.dark ? stylesDark : stylesLight;
+  const color = {
+    error: theme.colors.error,
+    warning: theme.colors.warning,
+    info: theme.colors.accent,
+    success: theme.colors.success,
+  }[severity];
 
   return (
-    <View style={[styles.root, stylesColor[severity], style]}>
-      <MaterialCommunityIcons name={icons[severity] as any} style={[styles.icon, stylesIcon[severity]]} size={24} />
+    // A tint of the severity's color behind the text, which has the color of the app's
+    <View style={[styles.root, { backgroundColor: Color(color).alpha(0.12).rgb().string() }, style]}>
+      <MaterialCommunityIcons name={icons[severity] as any} style={styles.icon} color={color} size={24} />
       {(to) ? (
         <Link
           to={to}
@@ -37,7 +44,7 @@ export default function Alert(props_: React.PropsWithChildren<PropsType>) {
           renderChild={(props) => (
             <TouchableRipple style={styles.touchable} {...props}>
               <Text
-                style={[styles.text, stylesColor[severity]]}
+                style={styles.text}
                 {...props}
               >
                 {children}
@@ -48,7 +55,7 @@ export default function Alert(props_: React.PropsWithChildren<PropsType>) {
       ) : (
         <View style={styles.touchable}>
           <Text
-            style={[styles.text, stylesColor[severity]]}
+            style={styles.text}
             {...props}
           >
             {children}
@@ -75,58 +82,5 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-  },
-});
-
-const stylesIcon = StyleSheet.create({
-  error: {
-    color: "#f44336",
-  },
-  warning: {
-    color: "#ff9800",
-  },
-  info: {
-    color: "#2196f3",
-  },
-  success: {
-    color: "#4caf50",
-  },
-});
-
-const stylesLight = StyleSheet.create({
-  error: {
-    color: "rgb(97, 26, 21)",
-    backgroundColor: "rgb(253, 236, 234)",
-  },
-  warning: {
-    color: "rgb(102, 60, 0)",
-    backgroundColor: "rgb(255, 244, 229)",
-  },
-  info: {
-    color: "rgb(13, 60, 97)",
-    backgroundColor: "rgb(232, 244, 253)",
-  },
-  success: {
-    color: "rgb(30, 70, 32)",
-    backgroundColor: "rgb(237, 247, 237)",
-  },
-});
-
-const stylesDark = StyleSheet.create({
-  error: {
-    color: "rgb(250, 179, 174)",
-    backgroundColor: "rgb(24, 6, 5)",
-  },
-  warning: {
-    color: "rgb(255, 213, 153)",
-    backgroundColor: "rgb(25, 15, 0)",
-  },
-  info: {
-    color: "rgb(166, 213, 250)",
-    backgroundColor: "rgb(3, 14, 24)",
-  },
-  success: {
-    color: "rgb(183, 223, 185)",
-    backgroundColor: "rgb(7, 17, 7)",
   },
 });
