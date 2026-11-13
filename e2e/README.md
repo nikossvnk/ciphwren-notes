@@ -61,5 +61,12 @@ server), rather than relying on what's already in the account. To check what a n
 `noteText()` or `viewerText()`: they fail when a saved note doesn't open in the viewer or doesn't
 show its text there, so that "opening a note shows it" is part of every test that reads a note.
 
+For transient actions such as **Undo**, wait for the action and use it before
+performing server reads. Those reads log in and fetch/decrypt data, which can
+outlast the action's timeout on CI. Check durable server results afterward:
+bookmark restoration creates a new item, leaving the deletion tombstone available
+to verify. Test an intermediate saved update separately from an update-and-undo
+cycle so neither loses coverage.
+
 Sessions are the size of a phone (412 by 860 pixels). Another size can be passed:
 `session(browser, "A", { width: 900, height: 700 })`.
