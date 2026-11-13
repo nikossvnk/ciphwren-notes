@@ -77,14 +77,20 @@ run(async () => {
   check("the change is saved on the server", saved.length === 1 && saved[0].name === `Changed ${n}` && !saved[0].tags, saved);
   check("and shown", await A.has(`Changed ${n}`) && !(await A.has(`Example ${n}`)));
 
-  // Deleting it, and undoing that
+  // Undo while the action is visible; server logins must not consume its timeout.
   await A.btn(new RegExp(`^more actions for changed ${n}$`, "i")).click(); await A.wait(800);
-  await menuItem("Delete").click(); await A.wait(2500);
+  await menuItem("Delete").click();
+  await A.btn(/^undo$/i).waitFor({ state: "visible" });
+  await A.p.getByRole("link", { name: `Changed ${n}`, exact: true }).waitFor({ state: "hidden" });
   check("delete takes it away right away", !(await A.has(`Changed ${n}`)) && await A.has("Bookmark deleted"));
-  check("and deletes it on the server", (await alive(url)).length === 0 && (await onServer(url)).some((x) => x.deleted));
-  await A.btn(/^undo$/i).click(); await A.wait(6000);
-  saved = await alive(url);
+  await A.btn(/^undo$/i).click();
+  await A.p.getByRole("link", { name: `Changed ${n}`, exact: true }).waitFor({ state: "visible" });
   check("undo brings it back", await A.has(`Changed ${n}`));
+  await A.wait(6000);
+  // Restoring creates a new item, so the old tombstone still proves deletion synced.
+  const afterUndo = await onServer(url);
+  check("the deletion reaches the server", afterUndo.some((x) => x.deleted), afterUndo);
+  saved = afterUndo.filter((x) => !x.deleted);
   check("on the server too", saved.length === 1 && saved[0].name === `Changed ${n}`, saved);
 
   // A shared link: the title comes from what was shared
@@ -107,9 +113,13 @@ run(async () => {
   await A.btn(/^update bookmark$/i).click(); await A.wait(5000);
   saved = await alive(sharedUrl);
   check("updating it changes the one that's there", await A.has("Bookmark updated") && saved.length === 1 && saved[0].note === "shared twice", saved);
+  // A separate update tests Undo without doing server reads during its time window.
+  await share();
+  await field("Note").fill("temporary change");
+  await A.btn(/^update bookmark$/i).click();
   await A.btn(/^undo$/i).click(); await A.wait(5000);
   saved = await alive(sharedUrl);
-  check("and undo puts it back the way it was", saved.length === 1 && saved[0].note === "shared once", saved);
+  check("and undo puts it back the way it was", saved.length === 1 && saved[0].note === "shared twice", saved);
   await A.btn(/^save$|^update bookmark$/i).click(); await A.wait(4000);
   await A.btn(/^open bookmarks$/i).click(); await A.wait(2000);
   check("open bookmarks goes to them", path() === "/bookmarks" && await A.has(`Shared page ${n} - Example`));
