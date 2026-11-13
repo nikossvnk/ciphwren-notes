@@ -13,6 +13,7 @@ npm-debug.*
 # Builds
 web-build/
 build/
+_site/
 *.jsbundle
 
 # Android/IntelliJ
