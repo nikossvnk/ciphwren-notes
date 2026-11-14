@@ -1,14 +1,17 @@
-// Bookmarks: adding one (with a note and a tag), finding it, opening it, changing it, deleting it (and
-// undoing that), saving a shared link (and the same one again), taking tracking parameters out of
-// links, that the notes don't show them, and that they reach another device
+// Bookmarks: adding one (with a note and a tag), finding it, opening it, changing it, deleting one
+// (for good, and undoing that once it's on the server), saving a shared link (and the same one again),
+// taking tracking parameters out of links, that the notes don't show them, and that they reach another
+// device
 const { launch, session, run, check, api, unique } = require("../lib");
 run(async () => {
   const n = unique();
   const url = `https://example.org/page-${n}`;
   const sharedUrl = `https://example.net/shared-${n}`;
+  const goneUrl = `https://example.org/gone-${n}`;
   // The bookmarks on the server with the link, deleted ones too
   const onServer = async (link) => (await api.bookmarks()).filter((x) => x.url === link);
   const alive = async (link) => (await onServer(link)).filter((x) => !x.deleted);
+  await api.addBookmark("Bookmarks", { name: `Gone ${n}`, url: goneUrl });
 
   const b = await launch();
   const A = await session(b, "A");
@@ -18,6 +21,10 @@ run(async () => {
   const path = () => new URL(A.p.url()).pathname;
   const field = (label) => A.p.locator(`[aria-label="${label}"] >> visible=true`).first();
   const menuItem = (name) => A.p.getByRole("menuitem", { name }).locator("visible=true").first();
+  const link = (name) => A.p.getByRole("link", { name, exact: true }).locator("visible=true").first();
+  // The next upload of changed bookmarks to the server
+  const uploaded = () => A.p.waitForResponse((r) => r.request().method() === "POST" &&
+    /\/item\/transaction\/$/.test(new URL(r.url()).pathname) && r.ok());
 
   await A.p.getByRole("tab", { name: "Bookmarks" }).locator("visible=true").first().click(); await A.wait(1500);
   check("the bookmarks tab opens the bookmarks", path() === "/bookmarks", path());
@@ -77,21 +84,34 @@ run(async () => {
   check("the change is saved on the server", saved.length === 1 && saved[0].name === `Changed ${n}` && !saved[0].tags, saved);
   check("and shown", await A.has(`Changed ${n}`) && !(await A.has(`Example ${n}`)));
 
-  // Undo while the action is visible; server logins must not consume its timeout.
-  await A.btn(new RegExp(`^more actions for changed ${n}$`, "i")).click(); await A.wait(800);
+  // Deleting one for good: once Undo is gone, it's deleted on the server
+  await A.btn(new RegExp(`^more actions for gone ${n}$`, "i")).click(); await A.wait(800);
   await menuItem("Delete").click();
   await A.btn(/^undo$/i).waitFor({ state: "visible" });
-  await A.p.getByRole("link", { name: `Changed ${n}`, exact: true }).waitFor({ state: "hidden" });
-  check("delete takes it away right away", !(await A.has(`Changed ${n}`)) && await A.has("Bookmark deleted"));
+  await link(`Gone ${n}`).waitFor({ state: "hidden" });
+  check("delete takes it away right away", !(await A.has(`Gone ${n}`)) && await A.has("Bookmark deleted"));
+  await A.btn(/^undo$/i).waitFor({ state: "hidden", timeout: 15000 });
+  await A.wait(2000);
+  const gone = await onServer(goneUrl);
+  check("left deleted, it's deleted on the server", gone.length === 1 && gone[0].deleted, gone);
+  check("and stays away", !(await A.has(`Gone ${n}`)));
+
+  // Deleting one, and undoing that once the deletion is on the server. Undo only waits 8 seconds,
+  // which reading the server can take longer than, so the upload is waited for instead.
+  await A.btn(new RegExp(`^more actions for changed ${n}$`, "i")).click(); await A.wait(800);
+  const deletion = uploaded();
+  await menuItem("Delete").click();
+  await deletion;
+  check("the deletion is uploaded while Undo is there", !(await A.has(`Changed ${n}`)) && await A.has("Bookmark deleted"));
   await A.btn(/^undo$/i).click();
-  await A.p.getByRole("link", { name: `Changed ${n}`, exact: true }).waitFor({ state: "visible" });
+  await link(`Changed ${n}`).waitFor({ state: "visible" });
   check("undo brings it back", await A.has(`Changed ${n}`));
   await A.wait(6000);
-  // Restoring creates a new item, so the old tombstone still proves deletion synced.
+  // (it's saved again as a new one, next to the deleted one)
   const afterUndo = await onServer(url);
-  check("the deletion reaches the server", afterUndo.some((x) => x.deleted), afterUndo);
+  check("the deleted one stays deleted on the server", afterUndo.filter((x) => x.deleted).length === 1, afterUndo);
   saved = afterUndo.filter((x) => !x.deleted);
-  check("on the server too", saved.length === 1 && saved[0].name === `Changed ${n}`, saved);
+  check("and it's back there with its details", saved.length === 1 && saved[0].name === `Changed ${n}` && saved[0].note === "for later", saved);
 
   // A shared link: the title comes from what was shared
   const share = async () => {
@@ -113,13 +133,9 @@ run(async () => {
   await A.btn(/^update bookmark$/i).click(); await A.wait(5000);
   saved = await alive(sharedUrl);
   check("updating it changes the one that's there", await A.has("Bookmark updated") && saved.length === 1 && saved[0].note === "shared twice", saved);
-  // A separate update tests Undo without doing server reads during its time window.
-  await share();
-  await field("Note").fill("temporary change");
-  await A.btn(/^update bookmark$/i).click();
   await A.btn(/^undo$/i).click(); await A.wait(5000);
   saved = await alive(sharedUrl);
-  check("and undo puts it back the way it was", saved.length === 1 && saved[0].note === "shared twice", saved);
+  check("and undo puts it back the way it was", saved.length === 1 && saved[0].note === "shared once", saved);
   await A.btn(/^save$|^update bookmark$/i).click(); await A.wait(4000);
   await A.btn(/^open bookmarks$/i).click(); await A.wait(2000);
   check("open bookmarks goes to them", path() === "/bookmarks" && await A.has(`Shared page ${n} - Example`));
@@ -158,6 +174,7 @@ run(async () => {
   const B = await session(b, "B");
   await B.login();
   await B.p.getByRole("tab", { name: "Bookmarks" }).locator("visible=true").first().click(); await B.wait(2000);
-  check("another device shows them after logging in", await B.has(`Changed ${n}`) && await B.has(`Shared page ${n} - Example`));
+  check("another device shows them after logging in", await B.has(`Changed ${n}`) && await B.has(`Shared page ${n} - Example`) &&
+    !(await B.has(`Gone ${n}`)));
   await b.close();
 });
