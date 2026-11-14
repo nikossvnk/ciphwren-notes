@@ -1,8 +1,10 @@
 # Changelog
 *NOTE:* may be removed in the future in favor of the fastlane changelog.
 
-## Unreleased
+## Version 3.0.0
 * Renamed to Ciphwren Notes, a separate app (`com.ciphwren.notes`): install it next to EteSync Notes and log in again; "Save to Ciphwren" in the share menu
+* A new look: the Ciphwren colours, the Inter font, and the bird as the app's icon and splash screen
+* There's no default server any more: enter your Etebase server's address when logging in or signing up. Links to EteSync's site and hosted service are gone, and the menu and About screen point to the source code
 
 ## Version 2.3.0
 * Bookmarks are saved without the tracking parameters of their links (like utm_source or fbclid), whether they're shared from another app, pasted or typed

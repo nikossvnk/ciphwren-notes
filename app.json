@@ -2,7 +2,7 @@
   "expo": {
     "name": "Ciphwren Notes",
     "slug": "ciphwren_notes",
-    "version": "2.3.0",
+    "version": "3.0.0",
     "icon": "./assets/icon.png",
     "assetBundlePatterns": [
       "**/*"

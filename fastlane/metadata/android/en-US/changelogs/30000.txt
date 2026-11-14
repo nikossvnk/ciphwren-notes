@@ -1,0 +1,3 @@
+* Renamed to Ciphwren Notes, a separate app: install it next to EteSync Notes and log in again
+* A new look: Ciphwren colours, the Inter font and a new icon
+* No default server: enter your Etebase server's address when logging in
