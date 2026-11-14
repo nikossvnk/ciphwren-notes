@@ -73,34 +73,6 @@ npm run android
 
 CI checks Expo dependency versions, TypeScript, and lint, and runs browser tests. `npm run android` builds, installs, and starts the app on a device or emulator.
 
-### Brand assets and themed Android icons
-
-The SVG masters live in [`assets/brand`](assets/brand). Android uses generated
-VectorDrawables for its adaptive launcher layers and light/dark splash screens.
-Expo inputs, the small in-app logo, favicon, legacy launcher icons and store icon
-remain raster exports; the screenshot banner and store feature graphic are raster
-compositions. No SVG rendering dependency is added to the app.
-
-Regenerate the app assets with `python3 scripts/generate-brand-assets.py`. This
-development-only tool needs Pillow, PyGObject, pycairo and librsvg (on Fedora:
-`sudo dnf install python3-pillow python3-gobject python3-cairo librsvg2`).
-The original SVG supplies the color mark; its inverse variant lifts the dark
-gradient stops for contrast on navy. The separate monochrome SVG has transparent
-eye, keyhole and wing cutouts.
-
-If an incremental Android build retains the old in-app logo after regeneration,
-remove `android/app/build/generated/res/react` and
-`android/app/build/generated/assets/react`, then rebuild so Metro recopies it.
-
-Android 13+ launchers can tint the adaptive icon's `monochrome` layer using the
-user's wallpaper/theme palette when **Themed icons** is enabled. Supply a color
-foreground, a background, and a single-color foreground on transparency—not a
-grayscale image or a full opaque tile. Our foreground and monochrome marks occupy
-54dp inside a 108dp canvas, within Android's 66dp safe zone. Both launcher icon
-definitions reference these vector layers; `app.json` also retains corresponding
-PNG inputs for Expo. The launcher controls the tint; the app's light/dark setting
-does not.
-
 ### Presentation website
 
 The [GitHub Pages site](https://nikossvnk.github.io/ciphwren-notes/) is a static
