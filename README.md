@@ -73,31 +73,6 @@ npm run android
 
 CI checks Expo dependency versions, TypeScript, and lint, and runs browser tests. `npm run android` builds, installs, and starts the app on a device or emulator.
 
-### Presentation website
-
-The [GitHub Pages site](https://nikossvnk.github.io/ciphwren-notes/) is a static
-presentation of the Android app, not the app's web build or a hosted notes service.
-Its HTML and responsive CSS live in [`site`](site); it has no runtime JavaScript,
-analytics, remote fonts, or build dependencies beyond Node.js.
-
-Preview it locally:
-
-```sh
-node scripts/build-site.mjs
-python3 -m http.server 4178 --directory _site
-```
-
-Open `http://localhost:4178`. The build copies the existing vector logo, README
-banner, and selected store screenshots into ignored `_site/`; edit the original
-assets rather than the generated copies.
-
-The **Presentation site** workflow builds pull requests and deploys changes on
-`master` to GitHub Pages. Repository **Settings → Pages → Source** must be
-**GitHub Actions** (enabled for this repository). The workflow can also be run
-manually on `master`. Deployment is restricted to `nikossvnk/ciphwren-notes`;
-forks only build. No app code, account data, or APK build is published by it.
-
-
 <details>
 <summary>Release builds and browser tests</summary>
 
