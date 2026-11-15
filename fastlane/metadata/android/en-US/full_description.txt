@@ -1,6 +1,6 @@
 Notes and bookmarks, end-to-end encrypted and synced with an Etebase server: your own (it's free and open source), or an EteSync account.
 
-This is an independent fork of EteSync Notes. It's not affiliated with or supported by EteSync.
+This is a fork of EteSync Notes. It's not affiliated with or supported by EteSync.
 
 Notes
 =====

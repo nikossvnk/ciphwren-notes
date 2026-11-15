@@ -71,10 +71,10 @@ npm run lint
 npm run android
 ```
 
-CI checks Expo dependency versions, TypeScript, and lint, and runs browser tests. `npm run android` builds, installs, and starts the app on a device or emulator.
+`npm run android` builds, installs, and starts the app on a device or emulator.
 
 <details>
-<summary>Release builds and browser tests</summary>
+<summary>Release builds</summary>
 
 Build a release APK:
 
@@ -85,18 +85,10 @@ cd android
 
 Without a release key, this build uses the debug key and is for testing only. See [`android/app/build.gradle`](android/app/build.gradle) for signing configuration. Published releases are built by the release workflow when a `vX.Y.Z` tag is pushed.
 
-The app also builds for the web:
-
-```sh
-npx expo export --platform web
-```
-
-The web build is used only for the browser tests. See the [end-to-end test guide](e2e/README.md).
-
 </details>
 
 ## Origins and license
 
-Ciphwren Notes is an **independent fork** of [EteSync Notes](https://github.com/etesync/etesync-notes), originally created by the EteSync authors. It is not affiliated with, endorsed by, or supported by EteSync.
+Ciphwren Notes is a fork of [EteSync Notes](https://github.com/etesync/etesync-notes), an app created by the EteSync authors. Ciphwren Notes is not affiliated with, endorsed by, or supported by EteSync.
 
 The original project's history and authorship are preserved, followed by this fork's changes. Like the original, Ciphwren Notes is licensed under [GPL-3.0](LICENSES/GPL-3.0-only).
