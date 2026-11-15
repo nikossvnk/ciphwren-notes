@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { TextInput as NativeTextInput } from "react-native";
+import { TextInputInstance } from "react-native";
 import { HelperText, Paragraph } from "react-native-paper";
 import { useNavigation, RouteProp, useNavigationState, CommonActions } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -159,7 +159,7 @@ export default function CollectionEditScreen(props: PropsType) {
     });
   }
 
-  const descriptionRef = React.createRef<NativeTextInput>();
+  const descriptionRef = React.createRef<TextInputInstance>();
 
   const collectionColorBox = (
     <>

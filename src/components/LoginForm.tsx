@@ -3,7 +3,7 @@
 
 import * as React from "react";
 
-import { View, TextInput as NativeTextInput } from "react-native";
+import { View, TextInputInstance } from "react-native";
 import { Switch, HelperText, Paragraph, TouchableRipple } from "react-native-paper";
 
 
@@ -34,9 +34,9 @@ export default function LoginForm(props: PropsType) {
   const [showAdvanced, setShowAdvanced] = React.useState(alwaysShowAdvanced);
   const [errors, setErrors] = React.useState<FormErrors>({});
 
-  const usernameRef = React.useRef<NativeTextInput>(null);
-  const passwordRef = React.useRef<NativeTextInput>(null);
-  const serverRef = React.useRef<NativeTextInput>(null);
+  const usernameRef = React.useRef<TextInputInstance>(null);
+  const passwordRef = React.useRef<TextInputInstance>(null);
+  const serverRef = React.useRef<TextInputInstance>(null);
 
   function onSubmit() {
     // There's no default server: the user must give theirs

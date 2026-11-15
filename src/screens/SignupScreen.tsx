@@ -5,7 +5,7 @@ import * as React from "react";
 
 import * as Etebase from "etebase";
 
-import { View, TextInput as NativeTextInput } from "react-native";
+import { View, TextInputInstance } from "react-native";
 import { Switch, Text, HelperText, Paragraph, TouchableRipple } from "react-native-paper";
 
 import { Headline } from "../widgets/Typography";
@@ -54,10 +54,10 @@ export default React.memo(function SignupScreen() {
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState<FormErrors>({});
 
-  const usernameRef = React.useRef<NativeTextInput>(null);
-  const emailRef = React.useRef<NativeTextInput>(null);
-  const passwordRef = React.useRef<NativeTextInput>(null);
-  const serverRef = React.useRef<NativeTextInput>(null);
+  const usernameRef = React.useRef<TextInputInstance>(null);
+  const emailRef = React.useRef<TextInputInstance>(null);
+  const passwordRef = React.useRef<TextInputInstance>(null);
+  const serverRef = React.useRef<TextInputInstance>(null);
 
   async function onSubmit() {
     // There's no default server: the user must give theirs
