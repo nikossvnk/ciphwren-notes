@@ -29,7 +29,7 @@ function InnerShareApp(props: { share: Shared }) {
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+      <StatusBar barStyle="light-content" />
       <ErrorBoundary>
         <SettingsGate>
           <ShareSheet

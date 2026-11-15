@@ -9,7 +9,8 @@ import { useTheme } from "../theme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Link from "./Link";
 
-type PropsType = ViewProps & {
+type PropsType = {
+  style?: ViewProps["style"];
   severity: "error" | "warning" | "info" | "success";
   to?: string;
   external?: boolean;
@@ -18,7 +19,7 @@ type PropsType = ViewProps & {
 
 export default function Alert(props_: React.PropsWithChildren<PropsType>) {
   const theme = useTheme();
-  const { children, style, severity, to, external, onPress, ...props } = props_;
+  const { children, style, severity, to, external, onPress } = props_;
   const icons = {
     error: "alert-circle-outline",
     warning: "alert-outline",
@@ -54,10 +55,7 @@ export default function Alert(props_: React.PropsWithChildren<PropsType>) {
         />
       ) : (
         <View style={styles.touchable}>
-          <Text
-            style={styles.text}
-            {...props}
-          >
+          <Text style={styles.text}>
             {children}
           </Text>
         </View>

@@ -102,7 +102,7 @@ function InnerApp() {
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} translucent backgroundColor="transparent" />
+      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
       <ErrorBoundary>
         <SettingsGate>
           <NavigationContainer linking={linking}>

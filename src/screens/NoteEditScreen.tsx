@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import * as Etebase from "etebase";
-import { View, ViewProps, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, GestureResponderEvent } from "react-native";
+import { View, ViewProps, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, TextInputInstance, HostInstance, GestureResponderEvent } from "react-native";
 import { Paragraph, Text, TouchableRipple } from "react-native-paper";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { fonts, useTheme } from "../theme";
@@ -57,15 +57,15 @@ export default function NoteEditScreen(props: PropsType) {
   const titleRef = React.useRef("");
   // Set when the note was moved to another notebook, as it isn't this one anymore then
   const movedRef = React.useRef(false);
-  const textInputRef = React.useRef<TextInput>(null);
-  const titleInputRef = React.useRef<TextInput>(null);
+  const textInputRef = React.useRef<TextInputInstance>(null);
+  const titleInputRef = React.useRef<TextInputInstance>(null);
   // The selection in the editor, which the formatting buttons change the Markdown around
   const selectionRef = React.useRef({ start: 0, end: 0 });
   // A selection the editor is given after formatting, until it reports one of its own
   const [forcedSelection, setForcedSelection] = React.useState<{ start: number, end: number }>();
   // Whether the editor takes the focus when it opens, as when the note was clicked to edit it
   const [focusEditor, setFocusEditor] = React.useState(false);
-  const deskRef = React.useRef<View>(null);
+  const deskRef = React.useRef<HostInstance>(null);
   const viewSettings = useSelector((state: StoreState) => state.settings.viewSettings);
   const { defaultViewMode, lastViewMode } = viewSettings;
   const { colUid, itemUid } = props.route.params;
@@ -510,7 +510,7 @@ function RightAction({ viewMode, setViewMode, onSave, onDelete, onShare, pinned,
 }
 
 interface TextEditorPropsType extends ViewProps {
-  inputRef?: React.Ref<TextInput>;
+  inputRef?: React.Ref<TextInputInstance>;
   content: string;
   setContent: (value: string) => void;
   autoFocus?: boolean;
@@ -554,7 +554,7 @@ interface NoteTitlePropsType {
   placeholder: string;
   onChange: (value: string) => void;
   onSubmit: () => void;
-  inputRef?: React.RefObject<TextInput | null>;
+  inputRef?: React.RefObject<TextInputInstance | null>;
   autoFocus?: boolean;
 }
 

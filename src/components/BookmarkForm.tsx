@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import * as React from "react";
-import { Platform, StyleSheet, TextInput, TextInputProps, View } from "react-native";
+import { Platform, StyleSheet, TextInput, TextInputInstance, TextInputProps, View } from "react-native";
 import { Text, TouchableRipple } from "react-native-paper";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { format } from "date-fns";
@@ -11,7 +11,7 @@ import { Bookmark, normalizeTag } from "../bookmarks";
 import { fonts, useTheme } from "../theme";
 
 // A labelled text field of the bookmark forms
-export const Field = React.forwardRef(function Field(props: TextInputProps & { label: string, optional?: boolean, mono?: boolean }, ref: React.Ref<TextInput>) {
+export const Field = React.forwardRef(function Field(props: TextInputProps & { label: string, optional?: boolean, mono?: boolean }, ref: React.Ref<TextInputInstance>) {
   const theme = useTheme();
   const [focused, setFocused] = React.useState(false);
   const { label, optional, mono, style, multiline, ...rest } = props;
